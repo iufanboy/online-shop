@@ -90,7 +90,7 @@ class HttpTest extends TestCase
 
     public function test_product_requires_quanity_to_create()
     {
-        $p = Product::factory()->make(['quantity' => '']);
+        $p = Product::factory()->make(['quantity' => null]);
 
         $response = $this->postJson(route('products.store', $p->toArray()));
 
@@ -108,7 +108,7 @@ class HttpTest extends TestCase
 
     public function test_product_requires_price_to_create()
     {
-        $p = Product::factory()->make(['price' => '']);
+        $p = Product::factory()->make(['price' => null]);
 
         $response = $this->postJson(route('products.store', $p->toArray()));
 
