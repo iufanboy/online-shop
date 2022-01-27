@@ -18,14 +18,14 @@ class HttpTest extends TestCase
     {
         $response = $this->getJson(route('products.index'));
 
-        $response->assertOk(200);
+        $response->assertOk();
     }
 
     public function test_auth_user_can_view_products()
     {
         $response = $this->getJson(route('products.index'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_each_product_has_exact_json()
@@ -34,7 +34,7 @@ class HttpTest extends TestCase
 
         $response = $this->getJson(route('products.index'));
 
-        $response->assertStatus(200)
+        $response->assertOk()
             ->assertJson(
                 fn (AssertableJson $jsons) =>
                 $jsons->has(5)
@@ -144,7 +144,7 @@ class HttpTest extends TestCase
 
         $response = $this->getJson(route('products.show', ['product' => $p]));
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_auth_user_can_view_product()
@@ -153,7 +153,7 @@ class HttpTest extends TestCase
 
         $response = $this->getJson(route('products.show', ['product' => $p]));
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_product_has_exact_json()
@@ -162,7 +162,7 @@ class HttpTest extends TestCase
 
         $response = $this->getJson(route('products.show', ['product' => $p]));
 
-        $response->assertStatus(200)
+        $response->assertOk()
             ->assertJson(
                 fn (AssertableJson $json) =>
                 $json->hasAll(['id', 'name', 'description', 'quantity', 'price', 'created_at', 'updated_at'])
